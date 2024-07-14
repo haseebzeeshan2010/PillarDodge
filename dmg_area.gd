@@ -18,6 +18,7 @@ func _process(delta):
 		%GPUParticles3D.set_emitting(false)
 		if %Node3D.get_scale().x > 0:
 			%Node3D.set_scale(Vector3(%Node3D.get_scale().x-0.5*delta,%Node3D.get_scale().y-0.5*delta,%Node3D.get_scale().z-0.5*delta))
+			%StaticBody3D.set_scale(Vector3(%StaticBody3D.get_scale().x-0.5*delta,%StaticBody3D.get_scale().y,%StaticBody3D.get_scale().z-0.5*delta))
 		else:
 			queue_free()
 	rotation.y += 0.1

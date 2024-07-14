@@ -20,7 +20,8 @@ func _process(delta):
 	else:
 		set_constant_torque(Vector3(0,0,0))	
 	
-	pass
+	if len(%dmg_area.get_overlapping_bodies()) > 0:
+		%Time.set_value(%Time.get_value()-40*delta)
 
 
 func _on_static_body_3d_2_body_entered(body):
@@ -30,5 +31,9 @@ func _on_static_body_3d_2_body_entered(body):
 	
 	%Target.global_position.x = randf_range(-50,50)
 	%Target.global_position.z = randf_range(-50,50)
-	%Time.set_value(100)
+
+	
+	if %Timer.get_wait_time() > 0.8:
+		%Timer.set_wait_time(%Timer.get_wait_time()-%Timer.get_wait_time()/20)
+	print(%Timer.get_wait_time())
 	pass # Replace with function body.

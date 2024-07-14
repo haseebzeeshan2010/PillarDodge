@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dmqneh8nmo441"]
+[gd_scene load_steps=31 format=3 uid="uid://dmqneh8nmo441"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_1i2ic"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_7yghc"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bs2jm62cmkbrk" path="res://addons/instant-realistic-light/light_scene.tscn" id="4_y5342"]
 [ext_resource type="Script" path="res://StaticBody3D2.gd" id="5_20me0"]
 [ext_resource type="StyleBox" uid="uid://boee2envg76um" path="res://buttonstyle.tres" id="6_sx8xh"]
-[ext_resource type="PackedScene" uid="uid://cwqyxoe15t6bf" path="res://dmg_area.tscn" id="8_40q3b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qckm4"]
 friction = 0.39
@@ -43,6 +42,31 @@ height = 6.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_76qpw"]
 radius = 3.0
+
+[sub_resource type="Curve" id="Curve_iukjt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.485507, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4tx31"]
+curve = SubResource("Curve_iukjt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g7glc"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 5, 5)
+gravity = Vector3(0, 8, 0)
+scale_curve = SubResource("CurveTexture_4tx31")
+turbulence_noise_strength = 10.66
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ber1n"]
+transparency = 1
+albedo_color = Color(0, 0.678431, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pjsip"]
+material = SubResource("StandardMaterial3D_ber1n")
+radius = 0.1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5r34"]
 bg_color = Color(0, 0.631373, 0.913725, 0.290196)
@@ -129,6 +153,15 @@ transform = Transform3D(1, 0, 0, 0, 0.650575, 0.759442, 0, -0.759442, 0.650575, 
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -2.84217e-14, 2.51759, -0.65328)
 shape = SubResource("BoxShape3D_wfjs4")
 
+[node name="dmg_area" type="Area3D" parent="CharacterBody3D"]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D/dmg_area"]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -2.84217e-14, 2.51759, -0.65328)
+shape = SubResource("BoxShape3D_wfjs4")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -189,7 +222,7 @@ transform = Transform3D(1, 0, 5.58794e-09, 0, 1, 0, -5.58794e-09, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_6ye07")
 
 [node name="Sun3" type="DirectionalLight3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1.21039, 1.59215, 0, -1.59215, 1.21039, -4.86868, 8.33126, 2.18251)
+transform = Transform3D(1, 0, 0, 0, 0.605197, 0.796076, 0, -0.796076, 0.605197, -4.86868, 8.33126, 2.18251)
 light_energy = 0.661
 shadow_enabled = true
 
@@ -208,6 +241,11 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
 shape = SubResource("SphereShape3D_76qpw")
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Target"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84373, 0)
+process_material = SubResource("ParticleProcessMaterial_g7glc")
+draw_pass_1 = SubResource("CapsuleMesh_pjsip")
+
 [node name="Time" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 anchors_preset = 5
@@ -220,7 +258,7 @@ offset_bottom = 76.135
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_r5r34")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1b8gq")
-value = 87.31
+value = 100.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="."]
@@ -293,10 +331,11 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_xlffc")
 disabled = true
 text = "Try Again?"
 
-[node name="dmg_area" parent="." instance=ExtResource("8_40q3b")]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 66, 0.02, -2.069)
-
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 6.0
+autostart = true
 
 [connection signal="body_entered" from="Target" to="CharacterBody3D" method="_on_static_body_3d_2_body_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
