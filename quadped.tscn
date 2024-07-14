@@ -1,0 +1,315 @@
+[gd_scene load_steps=29 format=3 uid="uid://dmqneh8nmo441"]
+
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_1i2ic"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="1_7yghc"]
+[ext_resource type="Script" path="res://game_logic.gd" id="1_dlvml"]
+[ext_resource type="PackedScene" uid="uid://b3lelqkrstp3x" path="res://char_quad_ped.tscn" id="1_vwlrv"]
+[ext_resource type="PackedScene" uid="uid://bs2jm62cmkbrk" path="res://addons/instant-realistic-light/light_scene.tscn" id="4_y5342"]
+[ext_resource type="Script" path="res://StaticBody3D2.gd" id="5_20me0"]
+[ext_resource type="StyleBox" uid="uid://boee2envg76um" path="res://buttonstyle.tres" id="6_sx8xh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qckm4"]
+friction = 0.39
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wfjs4"]
+size = Vector3(7.65, 10, 8.035)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_edv78"]
+size = Vector3(400, 1, 400)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxshw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f33wk"]
+material = SubResource("StandardMaterial3D_yxshw")
+size = Vector3(400, 1, 400)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fdj2p"]
+size = Vector3(250, 50, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ye07"]
+size = Vector3(250, 50, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6djoe"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.968627, 0, 0, 1)
+emission_energy_multiplier = 1.35
+
+[sub_resource type="SphereMesh" id="SphereMesh_vg1d4"]
+material = SubResource("StandardMaterial3D_6djoe")
+radius = 3.0
+height = 6.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_76qpw"]
+radius = 3.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g2k37"]
+bounce = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_if88p"]
+radius = 2.5
+height = 5.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ald8u"]
+radius = 2.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5r34"]
+bg_color = Color(0, 0.631373, 0.913725, 0.290196)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b8gq"]
+bg_color = Color(3.85046e-06, 0.61747, 0.870076, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1dd4"]
+font_size = 56
+font_color = Color(0.109804, 0.776471, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmd51"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.521569)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_h4cbk"]
+line_spacing = 3.07
+font_size = 81
+font_color = Color(1, 0.57, 0.57, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxh6c"]
+bg_color = Color(0, 0.572549, 0.788235, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0.572549, 0.788235, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8nv2k"]
+bg_color = Color(0.51, 0.51, 0.51, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.509804, 0.509804, 0.509804, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xlffc"]
+
+[node name="Node3D" type="Node3D"]
+process_mode = 3
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_dlvml")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1.50713, 1.31475, 0, -1.31475, 1.50713, 6.805, 41.81, 31.991)
+script = ExtResource("1_7yghc")
+
+[node name="CharacterBody3D" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_qckm4")
+linear_damp = 1.0
+angular_damp = 3.031
+script = ExtResource("1_1i2ic")
+
+[node name="CharQuadPed" parent="CharacterBody3D" instance=ExtResource("1_vwlrv")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="CharacterBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.650575, 0.759442, 0, -0.759442, 0.650575, 0, 19.14, 9.217)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(-0.5, 0, -7.54978e-08, 0, 0.5, 0, 7.54978e-08, 0, -0.5, -2.84217e-14, 2.51759, -0.65328)
+shape = SubResource("BoxShape3D_wfjs4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.359737, 0)
+shape = SubResource("BoxShape3D_edv78")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.480461, 0)
+mesh = SubResource("BoxMesh_f33wk")
+
+[node name="Scene_elements" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" parent="Scene_elements" instance=ExtResource("4_y5342")]
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72.63)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/StaticBody3D2"]
+mesh = SubResource("BoxMesh_fdj2p")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D2"]
+shape = SubResource("BoxShape3D_6ye07")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(-0.00232128, 0, -0.999997, 0, 1, 0, 0.999997, 0, -0.00232128, 125.047, 0, 49.6944)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/StaticBody3D3"]
+mesh = SubResource("BoxMesh_fdj2p")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D3"]
+shape = SubResource("BoxShape3D_6ye07")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(-0.00232128, 0, -0.999997, 0, 1, 0, 0.999997, 0, -0.00232128, -124.255, 0, 49.6944)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/StaticBody3D5"]
+mesh = SubResource("BoxMesh_fdj2p")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D5"]
+shape = SubResource("BoxShape3D_6ye07")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(-0.999702, 0, 0.0243972, 0, 1, 0, -0.0243972, 0, -0.999702, 2.0031, 0, 174.638)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/StaticBody3D4"]
+mesh = SubResource("BoxMesh_fdj2p")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D4"]
+shape = SubResource("BoxShape3D_6ye07")
+
+[node name="Sun3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.605197, 0.796076, 0, -0.796076, 0.605197, -4.86868, 8.33126, 2.18251)
+light_energy = 0.661
+shadow_enabled = true
+
+[node name="Target" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.269, 2, 0)
+collision_layer = 0
+script = ExtResource("5_20me0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89984, 0)
+mesh = SubResource("SphereMesh_vg1d4")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+shape = SubResource("SphereShape3D_76qpw")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 16)
+mass = 0.32
+physics_material_override = SubResource("PhysicsMaterial_g2k37")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_if88p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_ald8u")
+
+[node name="Time" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 49.135
+offset_right = 400.0
+offset_bottom = 76.135
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_r5r34")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1b8gq")
+value = 87.31
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = -61.0
+offset_right = 82.0
+offset_bottom = -38.0
+grow_vertical = 0
+text = "0
+"
+label_settings = SubResource("LabelSettings_c1dd4")
+
+[node name="Panel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -275.0
+offset_right = 450.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pmd51")
+
+[node name="GameOver" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -183.0
+offset_right = 225.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_h4cbk")
+
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = 66.5
+offset_right = 136.0
+offset_bottom = 164.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 49
+theme_override_styles/normal = ExtResource("6_sx8xh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rxh6c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8nv2k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xlffc")
+disabled = true
+text = "Try Again?"
+
+[connection signal="body_entered" from="Target" to="CharacterBody3D" method="_on_static_body_3d_2_body_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

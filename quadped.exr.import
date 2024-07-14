@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://dscmqpsj2xewg"
+path="res://.godot/imported/quadped.exr-a0ebaabd44ba79bace53f18d9c1eb645.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://quadped.exr"
+dest_files=["res://.godot/imported/quadped.exr-a0ebaabd44ba79bace53f18d9c1eb645.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=1

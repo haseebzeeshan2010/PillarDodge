@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3lelqkrstp3x"]
+
+[ext_resource type="Script" path="res://char_quad_ped.gd" id="1_xtsy3"]
+[ext_resource type="PackedScene" uid="uid://cjesgo3pi8u46" path="res://Roller_test/r_quadped.tscn" id="2_6gyl3"]
+
+[node name="CharQuadPed" type="Node3D"]
+script = ExtResource("1_xtsy3")
+
+[node name="roller_quadped" parent="." instance=ExtResource("2_6gyl3")]
