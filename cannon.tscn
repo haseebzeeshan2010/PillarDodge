@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmx2kmwphdhe2"]
+
+[ext_resource type="PackedScene" uid="uid://64kvuc4arji7" path="res://cannon.glb" id="1_vw114"]
+
+[node name="Cannon" type="Node3D"]
+
+[node name="cannon" parent="." instance=ExtResource("1_vw114")]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, -50, 0, 50, -2.18557e-06, 0, 0, 0)

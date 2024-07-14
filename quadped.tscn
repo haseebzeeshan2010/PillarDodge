@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dmqneh8nmo441"]
+[gd_scene load_steps=27 format=3 uid="uid://dmqneh8nmo441"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_1i2ic"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_7yghc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bs2jm62cmkbrk" path="res://addons/instant-realistic-light/light_scene.tscn" id="4_y5342"]
 [ext_resource type="Script" path="res://StaticBody3D2.gd" id="5_20me0"]
 [ext_resource type="StyleBox" uid="uid://boee2envg76um" path="res://buttonstyle.tres" id="6_sx8xh"]
+[ext_resource type="PackedScene" uid="uid://cwqyxoe15t6bf" path="res://dmg_area.tscn" id="8_40q3b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qckm4"]
 friction = 0.39
@@ -42,16 +43,6 @@ height = 6.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_76qpw"]
 radius = 3.0
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g2k37"]
-bounce = 1.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_if88p"]
-radius = 2.5
-height = 5.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ald8u"]
-radius = 2.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5r34"]
 bg_color = Color(0, 0.631373, 0.913725, 0.290196)
@@ -135,7 +126,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.650575, 0.759442, 0, -0.759442, 0.650575, 0, 19.14, 9.217)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(-0.5, 0, -7.54978e-08, 0, 0.5, 0, 7.54978e-08, 0, -0.5, -2.84217e-14, 2.51759, -0.65328)
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -2.84217e-14, 2.51759, -0.65328)
 shape = SubResource("BoxShape3D_wfjs4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -189,14 +180,16 @@ shape = SubResource("BoxShape3D_6ye07")
 transform = Transform3D(-0.999702, 0, 0.0243972, 0, 1, 0, -0.0243972, 0, -0.999702, 2.0031, 0, 174.638)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/StaticBody3D4"]
+transform = Transform3D(1, 0, 5.58794e-09, 0, 1, 0, -5.58794e-09, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_fdj2p")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D4"]
+transform = Transform3D(1, 0, 5.58794e-09, 0, 1, 0, -5.58794e-09, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_6ye07")
 
 [node name="Sun3" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.605197, 0.796076, 0, -0.796076, 0.605197, -4.86868, 8.33126, 2.18251)
+transform = Transform3D(2, 0, 0, 0, 1.21039, 1.59215, 0, -1.59215, 1.21039, -4.86868, 8.33126, 2.18251)
 light_energy = 0.661
 shadow_enabled = true
 
@@ -214,17 +207,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
 shape = SubResource("SphereShape3D_76qpw")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 16)
-mass = 0.32
-physics_material_override = SubResource("PhysicsMaterial_g2k37")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("SphereMesh_if88p")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("SphereShape3D_ald8u")
 
 [node name="Time" type="ProgressBar" parent="."]
 unique_name_in_owner = true
@@ -310,6 +292,11 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_8nv2k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xlffc")
 disabled = true
 text = "Try Again?"
+
+[node name="dmg_area" parent="." instance=ExtResource("8_40q3b")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 66, 0.02, -2.069)
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Target" to="CharacterBody3D" method="_on_static_body_3d_2_body_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

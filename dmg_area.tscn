@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwqyxoe15t6bf"]
+
+[ext_resource type="Script" path="res://dmg_area.gd" id="1_3vv6q"]
+[ext_resource type="Material" uid="uid://kgohxoiskjj6" path="res://dmg_area.tres" id="1_stjyj"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_bsysu"]
+material = ExtResource("1_stjyj")
+rings = 3
+ring_segments = 3
+
+[sub_resource type="TorusMesh" id="TorusMesh_nyppg"]
+material = ExtResource("1_stjyj")
+inner_radius = 0.864
+
+[sub_resource type="Curve" id="Curve_ve43c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.652174, 0.527472), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ejh52"]
+curve = SubResource("Curve_ve43c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rok0d"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 5, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ejh52")
+turbulence_enabled = true
+turbulence_noise_strength = 12.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rr3p7"]
+albedo_color = Color(0.1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0px0b"]
+material = SubResource("StandardMaterial3D_rr3p7")
+radius = 0.252
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lg2d3"]
+height = 8.0
+radius = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voq4h"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.501961)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4qs1i"]
+material = SubResource("StandardMaterial3D_voq4h")
+top_radius = 0.8
+bottom_radius = 0.8
+height = 8.0
+
+[node name="dmg_area" type="Node3D"]
+script = ExtResource("1_3vv6q")
+
+[node name="Node3D" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -0.0587828, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_bsysu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.0382323, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_nyppg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_rok0d")
+draw_pass_1 = SubResource("SphereMesh_0px0b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.8594, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_lg2d3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CylinderMesh_4qs1i")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
