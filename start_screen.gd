@@ -1,5 +1,5 @@
-extends Area3D
-var score = 0
+extends Control
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,5 +8,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	%Time.set_value(%Time.get_value()-9*delta)
 	pass
+
+
+func _on_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_button_2_pressed():
+	pass # Replace with function body.

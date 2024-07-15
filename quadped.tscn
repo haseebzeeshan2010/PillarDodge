@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dmqneh8nmo441"]
+[gd_scene load_steps=32 format=3 uid="uid://dmqneh8nmo441"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_1i2ic"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_7yghc"]
@@ -52,7 +52,7 @@ curve = SubResource("Curve_iukjt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g7glc"]
 emission_shape = 3
-emission_box_extents = Vector3(5, 5, 5)
+emission_box_extents = Vector3(4, 4, 4)
 gravity = Vector3(0, 8, 0)
 scale_curve = SubResource("CurveTexture_4tx31")
 turbulence_noise_strength = 10.66
@@ -124,6 +124,9 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xlffc"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_hoyp1"]
+font_size = 86
+
 [node name="Node3D" type="Node3D"]
 process_mode = 3
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -161,6 +164,9 @@ collision_mask = 2
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D/dmg_area"]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -2.84217e-14, 2.51759, -0.65328)
 shape = SubResource("BoxShape3D_wfjs4")
+
+[node name="LabelTimer" type="Timer" parent="CharacterBody3D"]
+unique_name_in_owner = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -242,7 +248,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
 shape = SubResource("SphereShape3D_76qpw")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Target"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84373, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.91419, 0)
 process_material = SubResource("ParticleProcessMaterial_g7glc")
 draw_pass_1 = SubResource("CapsuleMesh_pjsip")
 
@@ -336,6 +342,24 @@ unique_name_in_owner = true
 wait_time = 6.0
 autostart = true
 
+[node name="StageLabel" type="Label" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0, 20, 5, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stage 1 Complete"
+label_settings = SubResource("LabelSettings_hoyp1")
+
+[connection signal="timeout" from="CharacterBody3D/LabelTimer" to="CharacterBody3D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Target" to="CharacterBody3D" method="_on_static_body_3d_2_body_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
