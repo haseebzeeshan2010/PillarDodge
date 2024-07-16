@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckuq17vgaxbyt"]
+
+[ext_resource type="StyleBox" uid="uid://cv2fmfmjomhp3" path="res://background.tres" id="1_f3ic3"]
+[ext_resource type="Script" path="res://howtoplay.gd" id="1_m4yoo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62tcy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgjvv"]
+bg_color = Color(3.85046e-07, 0.643128, 0.924336, 1)
+border_width_top = 50
+border_width_bottom = 50
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak3ai"]
+bg_color = Color(0, 0.442912, 0.643472, 1)
+border_width_top = 50
+border_width_bottom = 50
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwoth"]
+bg_color = Color(0, 0.442912, 0.643472, 1)
+border_width_top = 50
+border_width_bottom = 50
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6328"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m4yoo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.833333, 1, 1)
+
+[node name="Button" type="Button" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -391.948
+offset_top = -235.0
+offset_right = 391.948
+offset_bottom = 235.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("1_f3ic3")
+theme_override_styles/disabled = ExtResource("1_f3ic3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_62tcy")
+disabled = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -207.0
+offset_right = 203.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "How To Play:"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -311.0
+offset_top = -87.44
+offset_right = 915.0
+offset_bottom = 167.56
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 29
+text = "1. Use WASD or Arrow Keys to turn and move
+
+2. Collect Orange Orbs to fill your Energy Bar
+
+3. Avoid Time Absorbers that appear on the 
+    ground - they will deplete your Energy Bar"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_left = 15.0
+offset_top = -15.0
+offset_right = 167.327
+offset_bottom = 135.0
+
+[node name="Button2" type="Button" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_jgjvv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ak3ai")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dwoth")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g6328")
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer2/Button2" to="." method="_on_button_2_pressed"]

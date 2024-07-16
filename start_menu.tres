@@ -2,13 +2,12 @@
 
 [resource]
 bg_color = Color(3.85046e-07, 0.643128, 0.924336, 1)
-border_width_bottom = 30
+border_width_top = 50
+border_width_bottom = 50
 border_color = Color(0.8, 0.8, 0.8, 0)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
+expand_margin_left = 20.0
+expand_margin_right = 20.0

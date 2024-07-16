@@ -1,15 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2hrsdxiuvjgt"]
+[gd_scene load_steps=10 format=3 uid="uid://c2hrsdxiuvjgt"]
 
 [ext_resource type="StyleBox" uid="uid://dpmc1tctcjy8o" path="res://start_menu.tres" id="1_0bugj"]
 [ext_resource type="Script" path="res://start_screen.gd" id="1_lc1rk"]
 [ext_resource type="StyleBox" uid="uid://cqeahcekoonro" path="res://hover_start_screen.tres" id="2_1ys64"]
 [ext_resource type="StyleBox" uid="uid://cv2fmfmjomhp3" path="res://background.tres" id="3_o61vh"]
+[ext_resource type="StyleBox" uid="uid://d18fvg14jwrpa" path="res://new_style_box_flat.tres" id="5_c71mt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wv7b4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_anbob"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoi0f"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vvjo"]
+bg_color = Color(3.85046e-07, 0.643128, 0.924336, 1)
+border_width_top = 50
+border_width_bottom = 50
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 20.0
+expand_margin_top = 5.0
+expand_margin_right = 20.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hexqe"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -57,16 +72,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -97.0
-offset_top = -86.29
+offset_top = -102.0
 offset_right = 97.0
-offset_bottom = 117.71
+offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 51
 theme_override_styles/normal = ExtResource("1_0bugj")
@@ -75,14 +87,28 @@ theme_override_styles/pressed = ExtResource("2_1ys64")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_anbob")
 text = "Play"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = ExtResource("1_0bugj")
-theme_override_styles/hover = ExtResource("2_1ys64")
-theme_override_styles/pressed = ExtResource("2_1ys64")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_aoi0f")
-text = "Options"
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -268.0
+offset_top = -150.0
+offset_right = -57.9978
+grow_horizontal = 0
+grow_vertical = 0
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[node name="Button2" type="Button" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_2vvjo")
+theme_override_styles/hover = ExtResource("5_c71mt")
+theme_override_styles/pressed = ExtResource("5_c71mt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hexqe")
+text = "How To Play
+"
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/Button2" to="." method="_on_button_2_pressed"]

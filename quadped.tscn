@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dmqneh8nmo441"]
+[gd_scene load_steps=33 format=3 uid="uid://dmqneh8nmo441"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_1i2ic"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_7yghc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bs2jm62cmkbrk" path="res://addons/instant-realistic-light/light_scene.tscn" id="4_y5342"]
 [ext_resource type="Script" path="res://StaticBody3D2.gd" id="5_20me0"]
 [ext_resource type="StyleBox" uid="uid://boee2envg76um" path="res://buttonstyle.tres" id="6_sx8xh"]
+[ext_resource type="AudioStream" uid="uid://c68copsxvtn7a" path="res://Game_Sound_Track - 16_07_2024, 20.37.mp3" id="8_t15aw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qckm4"]
 friction = 0.39
@@ -358,6 +359,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Stage 1 Complete"
 label_settings = SubResource("LabelSettings_hoyp1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_t15aw")
+volume_db = 1.874
+autoplay = true
 
 [connection signal="timeout" from="CharacterBody3D/LabelTimer" to="CharacterBody3D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Target" to="CharacterBody3D" method="_on_static_body_3d_2_body_entered"]
