@@ -54,9 +54,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -220.962
+offset_top = -180.478
 offset_right = 200.0
-offset_bottom = 220.963
+offset_bottom = 180.478
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = ExtResource("3_o61vh")
@@ -109,6 +109,22 @@ theme_override_styles/pressed = ExtResource("5_c71mt")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hexqe")
 text = "How To Play
 "
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -288.0
+offset_right = 301.0
+offset_bottom = -204.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 61
+text = "Robo Retriever"
 
 [connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/Button2" to="." method="_on_button_2_pressed"]
