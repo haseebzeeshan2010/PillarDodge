@@ -31,9 +31,7 @@ func _process(delta):
 		%Time.set_value(%Time.get_value()+100*delta)
 	else:
 		%StageLabel.set_self_modulate(Color(0,20,5,clamp(%StageLabel.get_self_modulate().a-1*delta*2,0,1)))
-	print(modulate_val,"  ",clamp(%StageLabel.get_self_modulate().a,0,1))
-	
-	
+
 
 func _on_static_body_3d_2_body_entered(body):
 	score+= 10

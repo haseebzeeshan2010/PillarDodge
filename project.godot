@@ -13,6 +13,8 @@ config_version=5
 config/name="skeleton_test"
 run/main_scene="res://start_screen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(1.73271e-06, 0.671982, 0.930058, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [input]
