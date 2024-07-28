@@ -10,9 +10,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("accelerate"):
-		apply_central_force(global_transform.basis.z * -25)
+		apply_central_force(global_transform.basis.z * -30)
 	elif Input.is_action_pressed("reverse"):
-		apply_central_force(global_transform.basis.z * 25)
+		apply_central_force(global_transform.basis.z * 30)
 	
 	if Input.is_action_pressed("left"):
 		set_constant_torque(Vector3(0,50,0))

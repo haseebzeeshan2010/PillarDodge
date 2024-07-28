@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dmqneh8nmo441"]
+[gd_scene load_steps=34 format=3 uid="uid://dmqneh8nmo441"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_1i2ic"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_7yghc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://StaticBody3D2.gd" id="5_20me0"]
 [ext_resource type="StyleBox" uid="uid://boee2envg76um" path="res://buttonstyle.tres" id="6_sx8xh"]
 [ext_resource type="AudioStream" uid="uid://c68copsxvtn7a" path="res://Game_Sound_Track - 16_07_2024, 20.37.mp3" id="8_t15aw"]
+[ext_resource type="PackedScene" uid="uid://cn5rcx2tlhyhy" path="res://game_scene.tscn" id="9_gxvci"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qckm4"]
 friction = 0.39
@@ -229,7 +230,7 @@ transform = Transform3D(1, 0, 5.58794e-09, 0, 1, 0, -5.58794e-09, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_6ye07")
 
 [node name="Sun3" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.605197, 0.796076, 0, -0.796076, 0.605197, -4.86868, 8.33126, 2.18251)
+transform = Transform3D(-0.835956, 1.4464, -1.09959, 0, 1.21039, 1.59215, 1.81691, 0.665485, -0.505918, -4.86868, 66.3313, 2.18251)
 light_energy = 0.661
 shadow_enabled = true
 
@@ -364,6 +365,10 @@ label_settings = SubResource("LabelSettings_hoyp1")
 stream = ExtResource("8_t15aw")
 volume_db = 1.874
 autoplay = true
+
+[node name="game_scene" parent="." instance=ExtResource("9_gxvci")]
+transform = Transform3D(1.1, 0, 0, 0, 0.78, 0, 0, 0, 1.1, 20.696, 0, -24.0787)
+visible = false
 
 [connection signal="timeout" from="CharacterBody3D/LabelTimer" to="CharacterBody3D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Target" to="CharacterBody3D" method="_on_static_body_3d_2_body_entered"]
